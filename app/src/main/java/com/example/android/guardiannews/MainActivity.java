@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     /** URL for news data from Guardian API URL */
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?";
+            "https://content.guardianapis.com/search?";
 
     /** Adapter for the list of news */
     private NewsAdapter mAdapter;
