@@ -24,25 +24,33 @@ public class MainActivity extends AppCompatActivity
 
     private static final String LOG_TAG = MainActivity.class.getName();
 
-    /** API key for URL requests. **/
+    /**
+     * API key for URL requests.
+     **/
     private static final String API_KEY = "45a4d399-cc54-424c-a5d4-8fb9ed9330ec";
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyView;
     private ProgressBar bar;
 
-    /** URL for news data from Guardian API URL */
+    /**
+     * URL for news data from Guardian API URL
+     */
     private static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/search?";
 
-    /** Adapter for the list of news */
+    /**
+     * Adapter for the list of news
+     */
     private NewsAdapter mAdapter;
 
     /**
      * Constant value for the news loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
-    private static final int NEWS_LOADER_ID = 0;
+    private static final int NEWS_LOADER_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         // Check internet connection and handle it.
         ConnectivityManager cm =
-                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
@@ -103,18 +111,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-// TODO: IMPLEMENT THIS
-/**        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String minMagnitude = sharedPrefs.getString(
-                getString(R.string.settings_min_magnitude_key),
-                getString(R.string.settings_min_magnitude_default));
-
-        String orderBy = sharedPrefs.getString(
-                getString(R.string.settings_order_by_key),
-                getString(R.string.settings_order_by_default)
-        );
- */
-
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
         uriBuilder.appendQueryParameter("api-key", API_KEY);
@@ -144,22 +140,4 @@ public class MainActivity extends AppCompatActivity
         mAdapter.clear();
     }
 
-    // TODO: IMPLEMENT THIS.
- /**   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-// TODO: AND THIS
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingsIntent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }
