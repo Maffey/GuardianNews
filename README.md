@@ -1,4 +1,4 @@
-# GuardianNews
+# Guardian News
 App that uses Guardian API.
 
 Due to unidentified circumstances, the app is not working.
